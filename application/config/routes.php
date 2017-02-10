@@ -55,6 +55,6 @@ $route['posts/(:any)'] = 'posts_controller/view/$1';
 $route['newpost'] = 'newpost_controller';
 $route['posts'] = 'posts_controller';
 
-$route['default_controller'] = 'welcome';
+$route['default_controller'] = 'posts_controller';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

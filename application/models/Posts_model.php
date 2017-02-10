@@ -1,33 +1,30 @@
 <?php
+
 class Posts_model extends CI_Model {
 
-        public function __construct()
-        {
-                $this->load->database();
+    public function __construct() {
+        $this->load->database();
+    }
+
+    public function get_posts($id = FALSE) {
+        if ($id === FALSE) {
+            $query = $this->db->get('posts');
+            return $query->result_array();
         }
 
-        public function get_news($id = FALSE)
-		{
-	        if ($id === FALSE)
-	        {
-	                $query = $this->db->get('posts');
-	                return $query->result_array();
-	        }
+        $query = $this->db->get_where('posts', array('id' => $id));
+        return $query->row_array();
+    }
 
-	        $query = $this->db->get_where('posts', array('id' => $id));
-	        return $query->row_array();
-		}
+    public function set_posts() {
+        $this->load->helper('url');
 
-		public function set_news()
-		{
-		    $this->load->helper('url');
+        $data = array(
+            'title' => $this->input->post('title'),
+            'body' => $this->input->post('body')
+        );
 
-		    $data = array(
-		        'title' => $this->input->post('title'),
-		        'body' => $this->input->post('body')
-		    );
-
-		    return $this->db->insert('posts', $data);
-		}
+        return $this->db->insert('posts', $data);
+    }
 
 }

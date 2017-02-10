@@ -10,7 +10,7 @@ class Posts_Controller extends CI_Controller {
 
         public function index()
         {
-                $data['posts'] = $this->posts_model->get_news();
+                $data['posts'] = $this->posts_model->get_posts();
                 $data['title'] = 'Posts';
 
                 $this->load->view('templates/header');
@@ -20,7 +20,7 @@ class Posts_Controller extends CI_Controller {
 
         public function view($id = NULL)
         {
-                $data['post'] = $this->posts_model->get_news($id);
+                $data['post'] = $this->posts_model->get_posts($id);
 
                 $data['title'] = 'Post';
 
@@ -49,7 +49,7 @@ class Posts_Controller extends CI_Controller {
             }
             else
             {
-                $this->posts_model->set_news();
+                $this->posts_model->set_posts();
                 $this->view('success');
             }
         }
